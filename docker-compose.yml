@@ -1,0 +1,30 @@
+version: '3.8'
+
+services:
+  backend:
+    build:
+      context: .
+      dockerfile: backend/Dockerfile
+    ports:
+      - "8000:8000"
+    volumes:
+      # Mount the backend code for live reloading during development
+      - ./backend:/app
+    # The container name makes it addressable from the frontend
+    container_name: deepfake_backend
+
+  frontend:
+    build:
+      context: .
+      dockerfile: frontend/Dockerfile
+    ports:
+      - "8501:8501"
+    volumes:
+      - ./frontend:/app
+    # Make the frontend depend on the backend service
+    depends_on:
+      - backend
+    # Environment variable to tell the frontend where the backend is
+    environment:
+      - BACKEND_URL=http://deepfake_backend:8000
+    container_name: deepfake_frontend
