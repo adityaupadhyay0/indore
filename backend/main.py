@@ -6,8 +6,8 @@ import time
 import numpy as np
 
 # Import the refactored logic
-from logic import get_deepfake_detector, process_video, aggregate_results
-from model import DeepfakeDetector
+from .logic import get_deepfake_detector, process_video, aggregate_results
+from .model import DeepfakeDetector
 
 app = FastAPI(
     title="Deepfake Radar API",
