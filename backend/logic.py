@@ -4,7 +4,7 @@ import torch
 from PIL import Image
 from facenet_pytorch import MTCNN
 
-from model import DeepfakeDetector
+from .model import DeepfakeDetector
 
 # --- Model and Device Setup ---
 device = torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')
